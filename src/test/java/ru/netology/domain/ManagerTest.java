@@ -66,4 +66,94 @@ public class ManagerTest {
 
         Assertions.assertArrayEquals (expected, actual);
     }
+
+    @Test
+    public void searchSingle() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy ("Eugene");
+        Product[] expected = {book2};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
+
+    @Test
+    public void searchForPartOfTheTitle() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy ("One");
+        Product[] expected = {book2};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
+
+    @Test
+    public void searchEmpty() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy ("");
+        Product[] expected = {book1, book2, smartphone1};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
+
+    @Test
+    public void searchWithASpace() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy (" ");
+        Product[] expected = {book1, book2};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
+
+    @Test
+    public void searchRomanNumeralsInTitle() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy ("x");
+        Product[] expected = {smartphone1};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
+
+    @Test
+    public void searchArabicNumeralsInTitle() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy ("10");
+        Product[] expected = {};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
 }
