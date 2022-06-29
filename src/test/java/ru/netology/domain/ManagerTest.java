@@ -68,6 +68,21 @@ public class ManagerTest {
     }
 
     @Test
+    public void searchByOneElement() {
+        Manager manager = new Manager ();
+
+        manager.add (book1);
+        manager.add (book2);
+        manager.add (smartphone1);
+
+
+        Product[] actual = manager.searchBy ("e");
+        Product[] expected = {book1, book2};
+
+        Assertions.assertArrayEquals (expected, actual);
+    }
+
+    @Test
     public void searchSingle() {
         Manager manager = new Manager ();
 
